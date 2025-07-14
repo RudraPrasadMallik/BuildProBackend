@@ -47,7 +47,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.15.4/jackson-annotations-2.15.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.15.4/jackson-core-2.15.4.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.15.4/jackson-databind-2.15.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/codehaus/jettison/jettison/1.4.0/jettison-1.4.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/netflix/eureka/eureka-core/2.0.1/eureka-core-2.0.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/servlet/jakarta.servlet-api/6.0.0/jakarta.servlet-api-6.0.0.jar" enabled="true" runInBatchMode="false"/>
@@ -117,4 +116,8 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.15.4/jackson-dataformat-yaml-2.15.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/swagger-ui/5.2.0/swagger-ui-5.2.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.15.4/jackson-databind-2.15.4.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

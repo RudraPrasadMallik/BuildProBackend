@@ -1,0 +1,10 @@
+com\buildpro\productservice\service\ProductService.class
+com\buildpro\productservice\config\SecurityConfig.class
+com\buildpro\productservice\entity\Product$ProductBuilder.class
+com\buildpro\productservice\entity\Product.class
+com\buildpro\productservice\ProductServiceApplication.class
+com\buildpro\productservice\config\JwtAuthFilter.class
+com\buildpro\productservice\config\SwaggerConfig.class
+com\buildpro\productservice\repository\ProductRepository.class
+com\buildpro\productservice\config\JwtUtil.class
+com\buildpro\productservice\controller\ProductController.class

@@ -1,0 +1,3 @@
+com\buildpro\apigateway\ApiGatewayApplication.class
+com\buildpro\apigateway\util\JwtUtil.class
+com\buildpro\apigateway\filter\AuthenticationFilter.class
