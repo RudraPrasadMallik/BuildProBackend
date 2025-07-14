@@ -10,6 +10,10 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
+  instance:
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:eureka-service.onrender.com}
+    prefer-ip-address: false
+
   server:
     wait-time-in-ms-when-sync-empty: 0
     enable-self-preservation: false
