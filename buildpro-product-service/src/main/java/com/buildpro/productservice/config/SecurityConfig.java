@@ -26,7 +26,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/products").permitAll()         // GET list
                         .requestMatchers("/products/**").permitAll()      // GET by id
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers(
+                        		"/swagger-ui/**", 
+                        		"/v3/api-docs/**",
+                        		 "/swagger-ui.html",
+                                 "/swagger-ui/**",
+                                 "/v3/api-docs/**",
+                                 "/api/**"
+                                 
+                        		).permitAll()
                         .anyRequest().authenticated()                    // POST needs token
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

@@ -10,7 +10,7 @@ import java.security.Key;
 @Component
 public class JwtUtil {
 
-    private final String secret = "buildpro_secretbuildpro_secretbuildpro_123"; // should be at least 32 chars
+    private final String secret = "buildpro_secretbuildpro_secretbuildpro_123"; 
 
     public boolean validateToken(String token) {
         try {

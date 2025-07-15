@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port:  ${PORT:8761}
 
 spring:
   application:
@@ -9,9 +9,11 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+      defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
 
   instance:
-    hostname: ${EUREKA_INSTANCE_HOSTNAME:eureka-service.onrender.com}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:buildpro-eureka-server.onrender.com}
     prefer-ip-address: false
 
   server:
