@@ -9,11 +9,9 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
 
   instance:
-    hostname: ${EUREKA_INSTANCE_HOSTNAME:buildpro-eureka-server.onrender.com}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:eureka-service.onrender.com}
     prefer-ip-address: false
 
   server:
