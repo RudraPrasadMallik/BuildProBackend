@@ -27,5 +27,5 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
 
