@@ -1,12 +1,16 @@
-# Stage 1: Build the JAR using Maven
 FROM maven:3.9.4-eclipse-temurin-17-alpine AS builder
 WORKDIR /app
-COPY . .
+
+# Copy the entire monorepo (so Maven can resolve parent POM)
+COPY ../../ .   
+
+# Go into subproject directory to run Maven build
+WORKDIR /app/buildpro-api-gateway
 RUN mvn clean package -DskipTests
 
 # Stage 2: Use a lightweight JDK image to run the JAR
 FROM openjdk:17-jdk-alpine
 WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
+COPY --from=builder /app/buildpro-api-gateway/target/*.jar app.jar
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "app.jar"]
