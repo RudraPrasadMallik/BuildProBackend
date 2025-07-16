@@ -1,24 +1,28 @@
 package com.buildpro.authservice.entity;
 
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "customer_users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class CustomerUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    private String role = "ROLE_USER";
+
     private String password;
-    private String role;
+    @Column(nullable = false)
+    private boolean isEmailVerified;
 }
