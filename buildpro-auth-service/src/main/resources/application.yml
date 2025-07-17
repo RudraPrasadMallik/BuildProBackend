@@ -20,8 +20,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: your-email@gmail.com
-    password: your-app-password   ⚠️ Replace with the Gmail app password (not your Gmail login password)
+    username: rudraenadu123@gmail.com
+    password: vyvp fcec ktwb ndfy
     properties:
       mail:
         smtp:
@@ -35,3 +35,8 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true

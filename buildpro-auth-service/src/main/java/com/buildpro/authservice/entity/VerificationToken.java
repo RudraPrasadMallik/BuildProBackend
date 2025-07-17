@@ -2,7 +2,7 @@ package com.buildpro.authservice.entity;
 
 import java.time.LocalDateTime;
 
-import com.ctc.wstx.shaded.msv_core.datatype.xsd.TokenType;
+import com.buildpro.authservice.entity.TokenType; // ✅ Correct import
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +34,7 @@ public class VerificationToken {
 
     private LocalDateTime expiryDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // ✅ Add this to store enum as String
     private TokenType tokenType;
 
     @ManyToOne
