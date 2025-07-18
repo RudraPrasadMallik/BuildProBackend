@@ -57,15 +57,18 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-      @Override
+    @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-        return path.startsWith("/swagger-ui") ||
-               path.startsWith("/v3/api-docs") ||
-               path.startsWith("/swagger-resources") ||
-               path.startsWith("/webjars") ||
-               path.startsWith("/swagger-ui.html") ||
-               path.startsWith("/user/auth") ||
-               path.startsWith("/admin/auth");
+        return path.contains("/swagger") ||
+               path.contains("/v3/api-docs") ||
+               path.contains("/swagger-resources") ||
+               path.contains("/webjars") ||
+               path.contains("/auth/register") ||
+               path.contains("/auth/login") ||
+               path.contains("/forgot-password") ||
+               path.contains("/reset-password") ||
+               path.contains("/verify");
     }
+
 }

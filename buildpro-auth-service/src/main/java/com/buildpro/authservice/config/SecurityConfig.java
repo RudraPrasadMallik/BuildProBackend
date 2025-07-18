@@ -38,24 +38,16 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
            
                 .requestMatchers(
-                	 "/swagger-ui/index.html",
-                     "/swagger-ui.html",
-                     "/swagger-ui/**",
+                		
+                	 "/swagger-ui.html",
+                	 "/swagger-ui/**",
                      "/v3/api-docs/**",
-                     "/webjars/**",
                      "/swagger-resources/**",
-    
-                      "/auth/swagger-ui.html",
-                      "/auth/swagger-ui/**",
-                      "/auth/v3/api-docs/**",
+                     "/webjars/**",
+                	 "/admin/auth/**",
+                	 "/user/auth/**"
+                			
                     
-                    "/admin/auth/login",
-                    "/admin/auth/register",
-                    "/user/auth/login",
-                    "/user/auth/register",
-                    "/user/auth/verify",
-                    "/user/auth/forgot-password",
-                    "/user/auth/reset-password"
                 ).permitAll()
 
                 // 🛡️ Role-based access
