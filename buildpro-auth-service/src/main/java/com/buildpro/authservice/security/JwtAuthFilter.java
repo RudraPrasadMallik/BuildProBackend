@@ -26,7 +26,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
         throws ServletException, IOException {
-
+    	
+    	 String path = request.getRequestURI();
+    	    System.out.println("🔐 Filtering request: " + path);
+    	    
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -60,6 +63,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
+        System.out.println("🔍 Incoming request URI: " + path);
+
         return path.contains("/swagger") ||
                path.contains("/v3/api-docs") ||
                path.contains("/swagger-resources") ||
@@ -70,5 +75,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                path.contains("/reset-password") ||
                path.contains("/verify");
     }
+
 
 }
