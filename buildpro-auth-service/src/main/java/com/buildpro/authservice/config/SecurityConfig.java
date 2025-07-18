@@ -31,35 +31,27 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-           
                 .requestMatchers(
-                		
-                	 "/swagger-ui.html",
-                	 "/swagger-ui/**",
-                     "/v3/api-docs/**",
-                     "/swagger-resources/**",
-                     "/webjars/**",
-                	 "/admin/auth/**",
-                	 "/user/auth/**"
-                			
-                    
+                    "/swagger-ui.html",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
+                    "/swagger-resources/**",
+                    "/webjars/**",
+                    "/admin/auth/**",
+                    "/user/auth/**"
                 ).permitAll()
-
-                // 🛡️ Role-based access
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/user/**").hasRole("USER")
-
-                // 🔒 Any other request requires authentication
                 .anyRequest().authenticated()
             )
-            // 🔄 Add JWT filter
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
+    
 
-        return http.build();
     }
 }

@@ -60,21 +60,21 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getRequestURI();
-        System.out.println("🔍 Incoming request URI: " + path);
-
-        return path.contains("/swagger") ||
-               path.contains("/v3/api-docs") ||
-               path.contains("/swagger-resources") ||
-               path.contains("/webjars") ||
-               path.contains("/auth/register") ||
-               path.contains("/auth/login") ||
-               path.contains("/forgot-password") ||
-               path.contains("/reset-password") ||
-               path.contains("/verify");
-    }
+//    @Override
+//    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+//        String path = request.getRequestURI();
+//        System.out.println("🔍 Incoming request URI: " + path);
+//
+//        return path.contains("/swagger") ||
+//               path.contains("/v3/api-docs") ||
+//               path.contains("/swagger-resources") ||
+//               path.contains("/webjars") ||
+//               path.contains("/auth/register") ||
+//               path.contains("/auth/login") ||
+//               path.contains("/forgot-password") ||
+//               path.contains("/reset-password") ||
+//               path.contains("/verify");
+//    }
 
 
 }
