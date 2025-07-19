@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080}  # Required for Render
+  port: ${PORT:8080}
 
 spring:
   application:
@@ -20,10 +20,14 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order/**
+        - id: swagger
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/swagger-ui/**, /v3/api-docs/**
 
 eureka:
   client:
-    service-url:
-      defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
     register-with-eureka: true
     fetch-registry: true
+    service-url:
+      defaultZone: https://buildpro-eureka-server.onrender.com/eureka/

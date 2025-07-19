@@ -1,5 +1,7 @@
 package com.buildpro.apigateway.filter;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -17,6 +19,13 @@ public class AuthenticationFilter implements WebFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+    
+    private static final List<String> openEndpoints = List.of(
+            "/auth", "/auth/", "/auth/login", "/auth/register",
+            "/v3/api-docs", "/v3/api-docs/", "/v3/api-docs/swagger-config",
+            "/swagger-ui", "/swagger-ui/", "/swagger-ui/index.html"
+        );
+
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {

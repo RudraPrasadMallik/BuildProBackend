@@ -60,21 +60,28 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-      @Override
-       protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-         String path = request.getRequestURI();
-           System.out.println("🔍 Incoming request URI: " + path);
+    
+    
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
 
-            return path.startsWith("/swagger-ui") ||
-       path.startsWith("/v3/api-docs") ||
-       path.startsWith("/swagger-resources") ||
-       path.startsWith("/webjars") ||
-       path.startsWith("/auth/register") ||
-       path.startsWith("/auth/login") ||
-       path.startsWith("/forgot-password") ||
-       path.startsWith("/reset-password") ||
-       path.startsWith("/verify");
-      }
+        System.out.println("🔍 Incoming request URI: " + path);
+        Collections.list(request.getHeaderNames()).forEach(
+            header -> System.out.println("🔍 Header: " + header + " = " + request.getHeader(header))
+        );
 
+        // ✅ Skip filtering for Swagger and public auth paths
+        return path.contains("swagger") ||
+               path.contains("v3/api-docs") ||
+               path.contains("webjars") ||
+               path.contains("swagger-resources") ||
+               path.contains("configuration") ||
+               path.contains("auth/register") ||
+               path.contains("auth/login") ||
+               path.contains("forgot-password") ||
+               path.contains("reset-password") ||
+               path.contains("verify");
+    }
 
 }
