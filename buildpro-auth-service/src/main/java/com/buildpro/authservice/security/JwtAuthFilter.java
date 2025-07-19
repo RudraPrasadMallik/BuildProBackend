@@ -65,15 +65,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
          String path = request.getRequestURI();
            System.out.println("🔍 Incoming request URI: " + path);
 
-            return path.contains("/swagger") ||
-                 path.contains("/v3/api-docs") ||
-                 path.contains("/swagger-resources") ||
-                 path.contains("/webjars") ||
-                 path.contains("/auth/register") ||
-                 path.contains("/auth/login") ||
-                 path.contains("/forgot-password") ||
-                 path.contains("/reset-password") ||
-                 path.contains("/verify");
+            return path.startsWith("/swagger-ui") ||
+       path.startsWith("/v3/api-docs") ||
+       path.startsWith("/swagger-resources") ||
+       path.startsWith("/webjars") ||
+       path.startsWith("/auth/register") ||
+       path.startsWith("/auth/login") ||
+       path.startsWith("/forgot-password") ||
+       path.startsWith("/reset-password") ||
+       path.startsWith("/verify");
       }
 
 
