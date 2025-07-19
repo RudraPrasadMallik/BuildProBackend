@@ -19,10 +19,10 @@ public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     // Used only if you later implement authenticationManager (optional)
 //    @Bean
@@ -51,7 +51,7 @@ public class SecurityConfig {
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
-    
-
+        
     }
+    
 }
