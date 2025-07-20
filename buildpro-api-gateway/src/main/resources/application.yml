@@ -21,9 +21,21 @@ spring:
           predicates:
             - Path=/order/**
         - id: swagger
-          uri: lb://AUTH-SERVICE
+          uri: http://localhost:${server.port} 
           predicates:
-            - Path=/swagger-ui/**, /v3/api-docs/**
+            - Path=/swagger-ui/**,/v3/api-docs/**,/swagger-resources/**,/webjars/**
+            
+  main:
+    allow-bean-definition-overriding: true
+
+# Activate Swagger
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v3/api-docs
+  api-docs:
+    path: /v3/api-docs
+    
 
 eureka:
   client:
