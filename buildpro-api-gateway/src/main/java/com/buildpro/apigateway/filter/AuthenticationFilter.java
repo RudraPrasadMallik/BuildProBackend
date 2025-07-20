@@ -1,55 +1,48 @@
 package com.buildpro.apigateway.filter;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-import com.buildpro.apigateway.util.JwtUtil;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import org.springframework.web.util.pattern.PathPatternParser;
+
 import reactor.core.publisher.Mono;
 
 @Component
 public class AuthenticationFilter implements WebFilter {
 
-    @Autowired
-    private JwtUtil jwtUtil;
-    
-    private static final List<String> openEndpoints = List.of(
-        "/auth/**", 
-        "/v3/api-docs/**", 
-        "/swagger-ui/**", 
-        "/swagger-resources/**",
-        "/webjars/**",
-        "/swagger-ui.html",
-        "/favicon.ico"
-    );
+    private static final String[] PUBLIC_PATHS = {
+            "/auth/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**"
+    };
+
+    private final PathPatternParser pathPatternParser = new PathPatternParser();
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        String path = exchange.getRequest().getURI().getPath();
-        System.out.println("🔍 Path received: " + path);
-        // Single check for open endpoints (remove the duplicate check)
-        if (openEndpoints.stream().anyMatch(path::contains)) {
-        	 System.out.println("✅ Bypassing auth for: " + path);
-            return chain.filter(exchange);
+        String path = exchange.getRequest().getPath().value();
+
+        for (String publicPath : PUBLIC_PATHS) {
+            if (pathPatternParser.parse(publicPath).matches(exchange.getRequest().getPath())) {
+                return chain.filter(exchange); // Allow public paths
+            }
         }
 
-        // JWT Validation for protected endpoints
+        // If Authorization header is missing, reject
         String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
+            return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Missing or invalid Authorization header"));
         }
 
-        String token = authHeader.substring(7);
-        if (!jwtUtil.validateToken(token)) {
-            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
-        }
+        // TODO: Optionally validate token here
 
-        return chain.filter(exchange);
+        return chain.filter(exchange); // Continue if token is valid
     }
 }

@@ -11,15 +11,19 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/**
+            -  Path=/auth/**, /swagger-ui/**, /v3/api-docs/**
+            
+            
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/product/**
+            - Path=/product/**,/product-service/v3/api-docs/**
+            
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/order/**
+            - Path=/order/**, /order-service/v3/api-docs/**
+            
         - id: swagger
           uri: http://localhost:${server.port} 
           predicates:
@@ -35,7 +39,12 @@ springdoc:
     url: /v3/api-docs
   api-docs:
     path: /v3/api-docs
-    
+  urls:
+      - name: auth-service
+        url: /auth-service/v3/api-docs
+      - name: other-service
+        url: /other-service/v3/api-docs
+
 
 eureka:
   client:
@@ -43,3 +52,4 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: https://buildpro-eureka-server.onrender.com/eureka/
+#       http://localhost:8761/eureka/   

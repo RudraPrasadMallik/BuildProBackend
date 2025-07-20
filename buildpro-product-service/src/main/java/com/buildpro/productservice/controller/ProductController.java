@@ -20,7 +20,7 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> getProductsBySection(@PathVariable Long sectionId) {
         return ResponseEntity.ok(productService.getProductsBySection(sectionId));
     }
-
+  
     // 👉 ADMIN: Add product
     @PostMapping("/admin/products")
     public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto dto) {
